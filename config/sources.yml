@@ -1,0 +1,26 @@
+# Source definitions: where files land, which staging table they feed, business key.
+sources:
+  crm:
+    path: data/landing/crm
+    pattern: "customers_*.csv"
+    target: staging.customers
+    key: customer_id
+    columns: [customer_id, name, email, country, updated_at]
+  products:
+    path: data/landing/products
+    pattern: "products_*.csv"
+    target: staging.products
+    key: product_id
+    columns: [product_id, name, category, price, updated_at]
+  orders:
+    path: data/landing/orders
+    pattern: "orders_*.csv"
+    target: staging.orders
+    key: order_id
+    columns: [order_id, customer_id, product_id, quantity, unit_price, order_ts, updated_at]
+  finance:
+    path: data/landing/finance
+    pattern: "payments_*.csv"
+    target: staging.payments
+    key: payment_id
+    columns: [payment_id, order_id, amount, paid_at, updated_at]
